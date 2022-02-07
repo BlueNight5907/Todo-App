@@ -1,0 +1,375 @@
+:root{
+    --body-bg:#fafafb;
+    --box-bg:#ffffff;
+    --main-color:#0652dd;
+    --text-color:#455560;
+    --header-color:rgb(41, 37, 37);
+    --border-color:#e9e9e9;
+    --text-second-color: #72849ab3;
+    --form-bg: rgba(0,0,0,0.8);
+    
+
+    --menu-item-active-bg:rgba(62,121,247,0.1);
+
+    --box-border-radius: 10px;
+    --sidebar-size: 300px;
+    --sidebar-logo-img-size:45px;
+    --sidebar-logo-size:80px;
+    --profile-img-size:45px;
+    --main-header-height:80px;
+    --shadow: 0 1px 4px -1px rgba(0 0 0 / 15%);
+    --dark-mode-toggle-size: 25px;
+}
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+.dark{
+    --body-bg:#1a191f;
+    --box-bg:#1a191f;
+    --border-color:#222028;
+    --text-color:#e9e9e9;
+}
+
+body{
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--body-bg);
+    color: var(--text-color);
+    position: relative;
+}
+.f-height{
+    height: 100%;
+}
+
+.f-width{
+    width: 100%;
+}
+/*
+Header CSS
+*/
+
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: var(--main-header-height);
+    box-shadow: var(--shadow);
+    background-color: var(--box-bg);
+    position: relative;
+}
+
+.dark .header{
+    border-bottom: 2px solid var(--border-color);
+}
+.box-hover:hover{
+    border-color: var(--main-color);
+}
+
+.header .header-title{
+    text-transform: capitalize;
+    font-size: 2rem;
+    color: var(--text-color);
+    font-weight: 600;
+}
+.main-content{
+    padding: 20px;
+}
+/*
+Darkmode toggle CSS
+*/
+.darkmode-toggle{
+    font-size: .8rem;
+    font-weight: 600;
+    position: absolute;
+    right: 20px;
+    display: flex;
+    align-items: center;
+}
+.darkmode-switch{
+    --height:var(--dark-mode-toggle-size);
+    --width: calc(var(--dark-mode-toggle-size)*2 - 2px);
+    height: var(--height);
+    width: var(--width);
+    border-radius: calc(var(--height)/2);
+    background-color: #f5f6fa;
+    position: relative;
+    margin-left: 10px;
+    border: 0.5px solid rgb(155, 155, 155);
+}
+.darkmode-switch::before{
+    --height:calc(var(--dark-mode-toggle-size) - 1px);
+    --width:calc(var(--dark-mode-toggle-size) - 1px);
+    content: '';
+    width: var(--height);
+    height: var(--height);
+    position: absolute;
+    left: 0;
+    border-radius: 50%;
+    background-color: var(--main-color);
+    transition: left 0.3s ease-in-out;
+}
+.darkmode-switch.active::before{
+    left: 50%;
+}
+/*
+End Darkmode toggle CSS
+*/
+/*
+End Header CSS
+*/
+
+/*
+Todo Item
+*/
+ul.todo-item-container li{
+    margin-bottom: 10px;
+    list-style: none;
+}
+ul.todo-item-container li .todo-item{
+    width: 100%;
+}
+.box{
+    background-color: var(--box-bg);
+    padding: 15px;
+    border: 0.5px solid var(--border-color);
+    border-radius: var(--box-border-radius);
+}
+.box-hover:hover{
+    border-color: var(--main-color);
+}
+
+.todo-item{
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+.todo-checkbox{
+    position: relative;
+    cursor: pointer;
+    font-size: 22px;
+    padding: 13px;
+    width: 26px;
+    height: 26px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.todo-checkbox input[type='checkbox']{
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 10;
+}
+.checkmark{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #eee;
+}
+.checkmark .bx-check{
+    transform: scale(0);
+    color: var(--main-color);
+    transition: transform 0.3s ease-in-out;
+}
+.todo-checkbox:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+.todo-checkbox input:checked ~ .checkmark {
+background-color: #edf0f1;
+}
+
+.todo-checkbox input:checked ~ .checkmark .bx-check{
+    transform: scale(1);
+}
+.todo-item button{
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    text-align: center;
+    font-size: 0.8rem;
+    font-weight: 600;
+    font-family:  'Roboto', sans-serif;;
+    display: flex;
+    align-items: center;
+    height: 40px;
+}
+.todo-item button i{
+    font-size: 1rem;
+    font-weight: 700;
+}
+.todo-item button:hover{
+    background-color: var(--menu-item-active-bg);
+}
+.todo-item button:active{
+    background-color: var(--main-color);
+    color: #ffffff;
+}
+
+.todo-item-content{
+    padding: 0 10px;
+}
+
+
+.todo-content{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* number of lines to show */
+    -webkit-box-orient: vertical;
+    font-size: 1rem;
+}
+.todo-type{
+    font-weight: 700;
+}
+.float-button{
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+}
+.float-button button{
+    padding: 15px;
+    outline: none;
+    box-shadow: 2px 2px 2px rgb(165, 163, 163);
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: rgba(62,121,247,0.8);
+}
+.float-button button i{
+    font-size: 2rem;
+    color: var(--text-color);
+}
+/*
+End Todo Item
+*/
+/*
+Modal add todo css
+*/
+.modal{
+    display: none;
+    position: fixed; /* Stay in place */
+    z-index: 100; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w*/
+}
+.modal.active{
+    display: block;
+}
+.modal .modal-content{
+    position: relative;
+    width: 80%;
+    min-width: 360px;
+    max-width: 860px;
+    padding: 20px;
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+    margin: 0 auto
+}
+.modal-content .modal-header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.close-modal{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    outline: none;
+    border: none;
+    background-color: inherit;
+}
+.close-modal i{
+    font-size: 2.5rem;
+    color: var(--text-color);
+}
+/* Add Animation */
+@-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0} 
+    to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+.modal-body{
+    margin-top: 20px;
+}
+.form-group{
+    position: relative;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+.form-group input,.form-group textarea{
+    width: 100%;
+    margin-left: 20px;
+    height: 40px;
+    outline: none;
+    border-radius: 10px;
+    border:none;
+    padding: 0 20px;
+    background-color: var(--menu-item-active-bg);
+    box-shadow: var(--shadow);
+    font-size: 1rem;
+}
+.form-group textarea{
+    padding-top: 10px;
+    font-size: 1rem;
+    font-family: inherit;
+}
+#todo-type{
+    margin-left: 45px;
+}
+.flex-right{
+    justify-content: flex-end;
+}
+.form-group button{
+    padding: 5px;
+    margin-left: 10px;
+    width: 80px;
+    border-radius: 5px;
+    outline: none;
+    border:none;
+    height: 30px;
+    cursor: pointer;
+}
+.reset{
+    color: white;
+    background-color: rgb(196, 1, 1);
+}
+.submit{
+    color: white;
+    background-color: var(--main-color);
+}
+
+/*
+End modal
+*/
